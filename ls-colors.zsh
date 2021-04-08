@@ -26,7 +26,7 @@ if [[ ! -d "${CACHE}/LS_COLORS" ]]; then
   RECOMPILE_NEEDED=1
 else
   CURRENT_HASH="$(git -C ${LOCAL_REPO_PATH} rev-parse HEAD)"
-  if [[ "${CURRENT_HASH}" != "$(cat "${LS_COLORS_COMP_HASH}")" ]]; then
+  if [[ "${CURRENT_HASH}" != "$(cat ${LS_COLORS_COMP_HASH})" ]]; then
     RECOMPILE_NEEDED=1
   fi
 fi
@@ -51,7 +51,7 @@ fi
 
 # Build the LS_COLORS string
 if [[ -n ${RECOMPILE_NEEDED} || ! -s "${LS_COLORS_COMPILED}" ]]; then
-  git -C "${LOCAL_REPO_PATH}" rev-parse HEAD" > "${LS_COLORS_COMP_HASH}"
+  git -C "${LOCAL_REPO_PATH}" rev-parse HEAD > "${LS_COLORS_COMP_HASH}"
   $DIRCOLORS -b "${LOCAL_REPO_PATH}/LS_COLORS" > "${LS_COLORS_COMPILED}"
 fi
 
