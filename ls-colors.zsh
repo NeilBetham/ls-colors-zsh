@@ -39,8 +39,13 @@ fi
 
 # Build the LS_COLORS string
 LS_COLORS_COMPILED="${CACHE}/ls_colors.sh"
+if [[ -n $MACOS ]]; then
+  DIRCOLORS="gdircolors"
+elif [[ -n $LINUX ]]; then
+  DIRCOLORS="dircolors"
+fi
 if [[ -n ${RECOMPILE_NEEDED} ]]; then
-  dircolors -b "${LOCAL_REPO_PATH}/LS_COLORS" > "${LS_COLORS_COMPILED}"
+  $DIRCOLORS -b "${LOCAL_REPO_PATH}/LS_COLORS" > "${LS_COLORS_COMPILED}"
 fi
 
 export CLICOLOR=true
