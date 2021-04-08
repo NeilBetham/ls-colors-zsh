@@ -45,7 +45,7 @@ fi
 
 # Build the LS_COLORS string
 LS_COLORS_COMPILED="${CACHE}/ls_colors.sh"
-if [[ -n ${RECOMPILE_NEEDED} ]]; then
+if [[ -n ${RECOMPILE_NEEDED} || ! -s "${LS_COLORS_COMPILED}" ]]; then
   $DIRCOLORS -b "${LOCAL_REPO_PATH}/LS_COLORS" > "${LS_COLORS_COMPILED}"
 fi
 
