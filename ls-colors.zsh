@@ -24,7 +24,7 @@ if [[ ! -d "${CACHE}/LS_COLORS" ]]; then
   RECOMPILE_NEEDED=1
 else
   CURRENT_HASH="$(git -C ${LOCAL_REPO_PATH} rev-parse HEAD)"
-  git -C "${LOCAL_REPO_PATH}" pull
+  git -C "${LOCAL_REPO_PATH}" pull -q
   if [[ "${CURRENT_HASH}" != "$(git -C ${LOCAL_REPO_PATH} rev-parse HEAD)" ]]; then
     RECOMPILE_NEEDED=1
   fi
