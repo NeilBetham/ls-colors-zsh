@@ -65,4 +65,4 @@ if [[ -n $LINUX ]]; then
 fi
 
 # Queue up a git pull in the background to see if there are updates to be had
-nohup git -C "${LOCAL_REPO_PATH}" pull -q &> /dev/null &
+nohup git -C "${LOCAL_REPO_PATH}" pull -q &> /dev/null &|
