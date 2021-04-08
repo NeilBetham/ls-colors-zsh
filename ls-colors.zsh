@@ -32,7 +32,7 @@ fi
 
 # Check if we need dircolors
 if ! command -v dircolors &> /dev/null; then
-  if [[ -n MACOS ]]; then
+  if [[ -n $MACOS ]]; then
     brew install coreutils
   fi
 fi
@@ -47,4 +47,7 @@ export CLICOLOR=true
 export LSCOLORS="Gxfxcxdxbxegedabagacab"
 source "${LS_COLORS_COMPILED}"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-alias ls='ls --color=auto'
+
+if [[ -n $LINUX ]]; then
+  alias ls='ls --color=auto'
+fi
