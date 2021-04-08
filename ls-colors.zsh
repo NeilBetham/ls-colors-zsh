@@ -32,9 +32,7 @@ else
 fi
 
 # Early Exit
-if [[ ! -n $RECOMPILE_NEEDED && -s "${LS_COLORS_COMPILED}" ]]; then
-  exit 0
-fi
+if [[ -n $RECOMPILE_NEEDED || ! -s "${LS_COLORS_COMPILED}" ]]; then
 
 # Check if we need dircolors
 if [[ -n $MACOS ]]; then
@@ -53,6 +51,8 @@ fi
 if [[ -n ${RECOMPILE_NEEDED} || ! -s "${LS_COLORS_COMPILED}" ]]; then
   git -C "${LOCAL_REPO_PATH}" rev-parse HEAD > "${LS_COLORS_COMP_HASH}"
   $DIRCOLORS -b "${LOCAL_REPO_PATH}/LS_COLORS" > "${LS_COLORS_COMPILED}"
+fi
+
 fi
 
 export CLICOLOR=true
