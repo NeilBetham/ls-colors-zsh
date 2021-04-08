@@ -31,7 +31,13 @@ else
 fi
 
 # Check if we need dircolors
-if ! command -v dircolors &> /dev/null; then
+if [[ -n $MACOS ]]; then
+  DIRCOLORS="gdircolors"
+elif [[ -n $LINUX ]]; then
+  DIRCOLORS="dircolors"
+fi
+
+if ! command -v $DIRCOLORS &> /dev/null; then
   if [[ -n $MACOS ]]; then
     brew install coreutils
   fi
@@ -39,11 +45,6 @@ fi
 
 # Build the LS_COLORS string
 LS_COLORS_COMPILED="${CACHE}/ls_colors.sh"
-if [[ -n $MACOS ]]; then
-  DIRCOLORS="gdircolors"
-elif [[ -n $LINUX ]]; then
-  DIRCOLORS="dircolors"
-fi
 if [[ -n ${RECOMPILE_NEEDED} ]]; then
   $DIRCOLORS -b "${LOCAL_REPO_PATH}/LS_COLORS" > "${LS_COLORS_COMPILED}"
 fi
